@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  lat: MyString
-  lon: MyString
-  distance: 1.5
+  name: "North Creek Trail"
+  lat: "47.796825"
+  lon: "-122.200852"
+  distance: 2.5
 
 two:
-  name: MyString
-  lat: MyString
-  lon: MyString
-  distance: 1.5
+  name: "Sammamish River Trail"
+  lat: "47.758693"
+  lon: "-122.204173"
+  distance: 3.3
