@@ -11,7 +11,7 @@ describe HikesController do
     end
 
     it "should return all hikes with exactly the required fields" do
-      keys = %w(distance lat lon name)
+      keys = %w(created_at distance lat lon name)
 
       get hikes_url
       body = JSON.parse(response.body)
