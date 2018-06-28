@@ -26,6 +26,14 @@ class HikesController < ApplicationController
   end
 
   def destroy
+    @hike = Hike.find_by(id: params[:id])
+
+    if @hike
+      @hike.destroy
+      render json: {id: @hike.id}, status: :ok
+    else
+      render json: {ok: false, cause: :not_found}, status: :not_found
+    end
   end
 
   private

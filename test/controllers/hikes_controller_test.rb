@@ -94,7 +94,30 @@ describe HikesController do
   end
 
   describe 'destroy' do
+    it "can delete an existing hike" do
+      hike = hikes(:one)
 
+      delete hike_url(hike.id)
+      body = JSON.parse(response.body)
+
+      expect(response).must_be :successful?
+      expect(response.header['Content-Type']).must_include 'json'
+      expect(body.keys).must_include 'id'
+      expect(Hike.find_by(id: hike.id)).must_be_nil
+    end
+
+    it "should return 404 if the hike to be deleted doesn't exist" do
+      hike = hikes(:one)
+      hike.destroy
+
+      delete hike_url(hike.id)
+      body = JSON.parse(response.body)
+
+      expect(response).must_be :not_found?
+      expect(response.header['Content-Type']).must_include 'json'
+      expect(body['ok']).must_equal false
+      expect(body['cause']).must_equal 'not_found'
+    end
   end
 
 end
