@@ -16,8 +16,21 @@ class HikesController < ApplicationController
   end
 
   def create
+    @hike = Hike.create(hike_params)
+
+    if @hike.valid?
+      render json: {id: @hike.id}, status: :ok
+    else
+      render json: {ok: false, cause: "validation errors", errors: @hike.errors}, status: :bad_request
+    end
   end
 
   def destroy
+  end
+
+  private
+
+  def hike_params
+    return params.permit(:name, :lat, :lon, :distance)
   end
 end

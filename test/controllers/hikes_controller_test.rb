@@ -58,7 +58,39 @@ describe HikesController do
   end
 
   describe 'create' do
+    it "can create a valid hike" do
+      hike = {
+        name: "North Creek Trail",
+        lat: "47.796825",
+        lon: "-122.200852",
+        distance: 2.5
+      }
 
+      proc {
+        post hikes_url, params: hike
+      }.must_change 'Hike.count', 1
+      body = JSON.parse(response.body)
+
+      expect(response).must_be :successful?
+      expect(response.header['Content-Type']).must_include 'json'
+      expect(body.keys).must_include 'id'
+    end
+
+    it "should return 400 when given an invalid hike" do
+      hike = {}
+
+      proc {
+        post hikes_url, params: hike
+      }.must_change 'Hike.count', 0
+      body = JSON.parse(response.body)
+
+      expect(response).must_be :bad_request?
+      expect(response.header['Content-Type']).must_include 'json'
+      expect(body.keys).must_include "cause"
+      expect(body["cause"]).must_equal "validation errors"
+      expect(body["errors"].keys).must_include "name"
+      expect(body["errors"]["name"]).must_include "can't be blank"
+    end
   end
 
   describe 'destroy' do
