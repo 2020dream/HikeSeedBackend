@@ -36,7 +36,25 @@ describe HikesController do
   end
 
   describe 'show' do
+    it "should retrieve a valid hike" do
+      get hike_url(hikes(:one).id)
 
+      expect(response).must_be :successful?
+    end
+
+    it "should return 404 for hikes that are not found" do
+      hike = hikes(:one)
+      hike.destroy
+
+      get hike_url(hike.id)
+      body = JSON.parse(response.body)
+
+      expect(response).must_be :not_found?
+      expect(body).must_be_kind_of Hash
+      expect(body).must_include 'ok'
+      expect(body['ok']).must_equal false
+      expect(body).must_include 'errors'
+    end
   end
 
   describe 'create' do

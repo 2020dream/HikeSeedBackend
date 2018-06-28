@@ -6,6 +6,13 @@ class HikesController < ApplicationController
   end
 
   def show
+    @hike = Hike.find_by(id: params[:id])
+
+    if @hike
+      render json: @hike.as_json(only: [:name, :lat, :lon, :distance])
+    else
+      render json: {ok: false, :errors => "Hike not found"}, status: :not_found
+    end
   end
 
   def create
