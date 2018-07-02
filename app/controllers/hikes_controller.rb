@@ -2,7 +2,7 @@ class HikesController < ApplicationController
   def index
     @hikes = Hike.all
 
-    render json: @hikes.as_json(only: [:name, :lat, :lon, :distance, :created_at])
+    render json: @hikes.as_json(only: [:name, :lat, :lon, :distance, :created_at], include: :seeds)
   end
 
   def show
