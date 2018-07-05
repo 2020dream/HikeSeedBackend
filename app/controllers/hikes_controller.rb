@@ -16,7 +16,7 @@ class HikesController < ApplicationController
   end
 
   def create
-    @hike = Hike.create(hike_params)
+    @hike = Hike.create_with_seeds(hike_params)
 
     if @hike.valid?
       render json: {id: @hike.id}, status: :ok
@@ -39,6 +39,6 @@ class HikesController < ApplicationController
   private
 
   def hike_params
-    return params.permit(:name, :lat, :lon, :distance)
+    return params.permit(:name, :lat, :lon, :distance, seeds: [:nickname])
   end
 end

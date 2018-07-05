@@ -5,4 +5,19 @@ class Hike < ApplicationRecord
   def total_seeds
     return self.seeds.count
   end
+
+  def self.create_with_seeds(hike_params)
+    name = hike_params[:name]
+    lat = hike_params[:lat]
+    lon = hike_params[:lon]
+    distance = hike_params[:distance]
+    seeds = hike_params[:seeds]
+
+    hike = Hike.create(name: name, lat: lat, lon: lon, distance: distance)
+    seeds.each do |seed|
+      Seed.create(nickname: seed[:nickname], hike_id: hike.id)
+    end
+
+    return hike
+  end
 end
