@@ -1,24 +1,26 @@
-# README
+# Hike & Seed API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This API is intended for use with the Hike & Seed mobile app that I created for capstone project.
 
-Things you may want to cover:
+## Retrieve Data
 
-* Ruby version
+  - Retrieve list of all hikes with seed data for that hike: http://localhost:3000/hikes
 
-* System dependencies
+  - Retrieve specific hike: http://localhost:3000/hikes/:hike_id
 
-* Configuration
+## Send data
 
-* Database creation
+  - Add a hike with seeds data:
+    - POST http://localhost:3000/hikes
+    - required params:
+      - name (string)
+      - lat (string)
+      - lon (string)
+      - distance (float)
+      - seeds (array of seed object)
+        - required params for seed: nickname (string)
 
-* Database initialization
+## Delete Data
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  - Delete a hike, warning destroys all seed data for that hike
+    - DELETE http://localhost:3000/hikes/:hike_id
