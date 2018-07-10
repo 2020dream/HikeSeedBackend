@@ -14,8 +14,10 @@ class Hike < ApplicationRecord
     seeds = hike_params[:seeds]
 
     hike = Hike.create(name: name, lat: lat, lon: lon, distance: distance)
-    seeds.each do |seed|
-      Seed.create(nickname: seed[:nickname], hike_id: hike.id)
+    if seeds != nil
+      seeds.each do |seed|
+        Seed.create(nickname: seed[:nickname], hike_id: hike.id)
+      end
     end
 
     return hike

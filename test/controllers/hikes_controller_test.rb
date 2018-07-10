@@ -11,7 +11,7 @@ describe HikesController do
     end
 
     it "should return all hikes with exactly the required fields" do
-      keys = %w(created_at distance lat lon name)
+      keys = %w(created_at distance id lat lon name seeds)
 
       get hikes_url
       body = JSON.parse(response.body)
@@ -63,7 +63,10 @@ describe HikesController do
         name: "North Creek Trail",
         lat: "47.796825",
         lon: "-122.200852",
-        distance: 2.5
+        distance: 2.5,
+        seeds: [{
+          nickname: 'test'
+        }]
       }
 
       proc {

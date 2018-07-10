@@ -4,7 +4,7 @@ class SeedsController < ApplicationController
 
     if @seed
       @seed.destroy
-      render json: {id: @seed.id}, status: :ok
+      render json: @seed.as_json(only: [:id, :nickname, :hike_id]), status: :ok
     else
       render json: {ok: false, cause: :not_found}, status: :not_found
     end
