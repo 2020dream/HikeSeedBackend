@@ -9,9 +9,12 @@
 hikes = [
   {
     name: "North Creek Trail",
-    lat: "47.796825",
-    lon: "-122.200852",
-    distance: "2.5"
+    lat: "47.775635",
+    lon: "-122.185626",
+    distance: "1.7",
+    origin_lat: "47.794123",
+    origin_lon: "-122.201123",
+    date: "07-02-2018"
   }
 ]
 
@@ -20,4 +23,3 @@ hikes.each do |hike|
 end
 
 Seed.create(nickname: 'Wall-E', hike: Hike.all[0])
-Seed.create(nickname: 'Eva', hike: Hike.all[0])
