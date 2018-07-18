@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_12_041916) do
+ActiveRecord::Schema.define(version: 2018_07_18_041009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2018_07_12_041916) do
     t.string "origin_lat"
     t.string "origin_lon"
     t.string "date"
+    t.boolean "is_harvest", default: false
   end
 
   create_table "seeds", force: :cascade do |t|
