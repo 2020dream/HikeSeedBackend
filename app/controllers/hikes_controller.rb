@@ -1,6 +1,6 @@
 class HikesController < ApplicationController
   def index
-    @hikes = Hike.all
+    @hikes = Hike.all.order(:id).reverse_order
 
     render json: @hikes.as_json(only: [:id, :name, :origin_lat, :origin_lon, :lat, :lon, :distance, :date, :is_harvest], include: :seeds)
   end
